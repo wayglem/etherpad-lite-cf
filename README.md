@@ -11,7 +11,7 @@ This repo contains a modified version of the original etherpad-lite modified to 
  4. 
     - Run `cf push etherpad-lite -m 512M` and you will have a sqlite instance on your app created
     - (With a database user provided) Follow this [instructions](#using-database-from-user-provided-service) and run `cf push etherpad-lite -m 512M`
- 5. You've done
+ 5. You're done
 
 ## Install new plugin(s)
 To install new etherpad plugin (you can see a list here: [https://github.com/.../Plugin,-a-list](https://github.com/ether/etherpad-lite/wiki/Plugin,-a-list) ) you shoud add them in `package.json` in the root app directory to let the nodejs buildpack build/download them.
