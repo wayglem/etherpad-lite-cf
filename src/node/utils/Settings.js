@@ -85,17 +85,20 @@ exports.defaultPadText = "Welcome to Etherpad!\n\nThis pad text is synchronized 
  * The toolbar buttons and order.
  */
 exports.toolbar = {
-    left: [
-        ["bold", "italic", "underline", "strikethrough"],
-        ["orderedlist", "unorderedlist", "indent", "outdent"],
-        ["undo", "redo"],
-        ["clearauthorship"]
-    ],
-    right: [
-        ["importexport", "timeslider", "savedrevision"],
-        ["settings", "embed"],
-        ["showusers"]
-    ]
+  left: [
+    ["bold", "italic", "underline", "strikethrough"],
+    ["orderedlist", "unorderedlist", "indent", "outdent"],
+    ["undo", "redo"],
+    ["clearauthorship"]
+  ],
+  right: [
+    ["importexport", "timeslider", "savedrevision"],
+    ["settings", "embed"],
+    ["showusers"]
+  ],
+  timeslider: [
+    ["timeslider_export", "timeslider_returnToPad"]
+  ]
 }
 
 /**
@@ -107,6 +110,11 @@ exports.requireSession = false;
  * A flag that prevents users from creating new pads
  */
 exports.editOnly = false;
+
+/**
+ * A flag that bypasses password prompts for users with valid sessions
+ */
+exports.sessionNoPassword = false;
 
 /**
  * Max age that responses will have (affects caching layer).
@@ -168,16 +176,29 @@ exports.abiwordAvailable = function () {
 };
 
 exports.reloadSettings = function reloadSettings() {
-    // Discover where the settings file lives
-    var settingsFilename = argv.settings || "settings.json";
-    settingsFilename = path.resolve(path.join(exports.root, settingsFilename));
+  // Discover where the settings file lives
+  var settingsFilename = argv.settings || "settings.json";
 
-    var settingsStr;
-    try {
-        //read the settings sync
-        settingsStr = fs.readFileSync(settingsFilename).toString();
-    } catch (e) {
-        console.warn('No settings file found. Continuing using defaults!');
+  if (path.resolve(settingsFilename)===settingsFilename) {
+    settingsFilename = path.resolve(settingsFilename);
+  } else {
+    settingsFilename = path.resolve(path.join(exports.root, settingsFilename));
+  }
+  
+  var settingsStr;
+  try{
+    //read the settings sync
+    settingsStr = fs.readFileSync(settingsFilename).toString();
+  } catch(e){
+    console.warn('No settings file found. Continuing using defaults!');
+  }
+
+  // try to parse the settings
+  var settings;
+  try {
+    if(settingsStr) {
+      settingsStr = jsonminify(settingsStr).replace(",]","]").replace(",}","}");
+      settings = JSON.parse(settingsStr);
     }
 
     // try to parse the settings

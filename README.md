@@ -5,6 +5,7 @@ This repo contains a modified version of the original etherpad-lite modified to 
 
 # Installation
 
+
  1. Download the `etherpad-lite-cf.zip` in release tab on github.
  2. Extract the zip file
  3. Go to the extracted archive with your console
