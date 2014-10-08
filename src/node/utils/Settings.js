@@ -193,14 +193,6 @@ exports.reloadSettings = function reloadSettings() {
     console.warn('No settings file found. Continuing using defaults!');
   }
 
-  // try to parse the settings
-  var settings;
-  try {
-    if(settingsStr) {
-      settingsStr = jsonminify(settingsStr).replace(",]","]").replace(",}","}");
-      settings = JSON.parse(settingsStr);
-    }
-
     // try to parse the settings
     var settings;
     try {
