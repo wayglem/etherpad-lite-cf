@@ -38,6 +38,8 @@ See the list:
  - [ep_ruler](https://github.com/iquidus/ep_ruler): Adds a ruler to Etherpad lite
  - [ep_table_of_contents](https://github.com/JohnMcLear/ep_table_of_contents.git): View a table of contents for your pad
  - [ep_prompt_for_name](https://github.com/JohnMcLear/ep_prompt_for_name.git): Prompt an author for their name
+ - [ep_adminpads](https://github.com/spcsser/ep_adminpads) Plugin for etherpad lite for admins to list, search and delete pads.
+ - [ep_pad_tracker](https://github.com/aoberegg/ep_pad_tracker) With the Pad Tracker it's possible to search in all the created Pads of your server and with a click on track you can track it. Tracking means that you can see all tracked-pads on the main-page (/admin/padtracker) of the Plugin. All tracked Pads get listed on the main page with the name, the amoung of revisions and the date of the last edit.
 
 ## Using database from user provided service
 
