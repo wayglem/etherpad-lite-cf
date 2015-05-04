@@ -288,7 +288,7 @@ exports.reloadSettings = function reloadSettings() {
             exports[i] = settings[i];
         }
     }
-    var dbService = /.*(db|database|pg|postgres|my|mysql|mongo|lite|level|dirty|redis|couch|elasticsearch).*/i;
+    var dbService = /.*(db|database|pg|postgres|mysql|mongo|lite|level|dirty|redis|couch|elasticsearch).*/i;
 
     if (appEnv.getService(dbService) != null
         && appEnv.getService(dbService).credentials.uri != undefined

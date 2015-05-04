@@ -43,7 +43,7 @@ See the list:
 
 ## Using database
 
- 1. Create a database service which have an uri, the name must follow this regex: `/.*(db|database|pg|postgres|my|mysql|mongo|lite|level|dirty|redis|couch|elasticsearch).*/i`
+ 1. Create a database service which have an uri, the name must follow this regex: `/.*(db|database|pg|postgres|mysql|mongo|lite|level|dirty|redis|couch|elasticsearch).*/i`
  2. Bind your service to your app `cf bind-service <app> <service name>`
  3. you need to... No that's all, push your app :)
  
