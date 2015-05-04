@@ -41,26 +41,24 @@ See the list:
  - [ep_adminpads](https://github.com/spcsser/ep_adminpads) Plugin for etherpad lite for admins to list, search and delete pads.
  - [ep_pad_tracker](https://github.com/aoberegg/ep_pad_tracker) With the Pad Tracker it's possible to search in all the created Pads of your server and with a click on track you can track it. Tracking means that you can see all tracked-pads on the main-page (/admin/padtracker) of the Plugin. All tracked Pads get listed on the main page with the name, the amoung of revisions and the date of the last edit.
 
-## Using database from user provided service
+## Using database
 
-This example will use `DATABASE` as service name cause it's the default name.
-
- 1. First you need to create your user provided service, in a terminal run `cf cups DATABASE -p '{"uri": "<dbtype>://<dbuser>:<dbpassword>@<dbhost>:<dbport>/<dbname>"}` (**Note**: if you change the service name (here `DATABASE`) you need to change in your `settings.json` the value of `dbService` by your service name)
- 2. Bind your service to your app `cf bind-service <app> DATABASE`
+ 1. Create a database service which have an uri, the name must follow this regex: `/.*(db|database|pg|postgres|my|mysql|mongo|lite|level|dirty|redis|couch|elasticsearch).*/i`
+ 2. Bind your service to your app `cf bind-service <app> <service name>`
  3. you need to... No that's all, push your app :)
  
 ## Using LDAP from user provided service
 By default this etherpad-lite has the [ep_ldapauth](https://github.com/ArthurHlt/ep_ldapauth) running and you can directly use it with user provided service, do this steps:
-This example will use `LDAP` as service name cause it's the default name.
 
- 1. First you need to create your user provided service, in a terminal run `cf cups LDAP -p 'same json from ldap plugin` (**Note**: if you change the service name (here `LDAP`) you need to change in your `settings.json` the value of `ldapService` by your service name)
- 2. Bind your service to your app `cf bind-service <app> LDAP`
+
+ 1. First you need to create your user provided service, in a terminal run `cf cups myldap -p 'same json from ldap plugin` (**Note**: your service name must have `ldap` in his name for auto-binding)
+ 2. Bind your service to your app `cf bind-service <app> myldap`
  3. Push your app
 
 Cf cups example with json:
 
 ```shell
-$ cf cups LDAP -p '{"url": "ldaps://ldap.example.com", "accountBase": "ou=Users,dc=example,dc=com", "accountPattern": "(&(objectClass=*)(uid={{username}}))", "displayNameAttribute": "cn", "searchDN": "uid=searchuser,dc=example,dc=com", "searchPWD": "supersecretpassword", "groupSearchBase": "ou=Groups,dc=example,dc=com", "groupAttribute": "member", "groupAttributeIsDN": true ,"searchScope": "sub", "groupSearch": "(&(cn=admin)(objectClass=groupOfNames))", "anonymousReadonly": false}'
+$ cf cups myldap -p '{"url": "ldaps://ldap.example.com", "accountBase": "ou=Users,dc=example,dc=com", "accountPattern": "(&(objectClass=*)(uid={{username}}))", "displayNameAttribute": "cn", "searchDN": "uid=searchuser,dc=example,dc=com", "searchPWD": "supersecretpassword", "groupSearchBase": "ou=Groups,dc=example,dc=com", "groupAttribute": "member", "groupAttributeIsDN": true ,"searchScope": "sub", "groupSearch": "(&(cn=admin)(objectClass=groupOfNames))", "anonymousReadonly": false}'
 ```
 
 ## Current limitation
