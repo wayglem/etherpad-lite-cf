@@ -76,7 +76,8 @@
     "ep_adminpads": "0.0.9",
     "ep_pad_tracker": "0.0.9",
     "cfenv": "1.0.0",
-    "parse-database-url": "*"
+    "parse-database-url": "*",
+    "semver": "4.3.4"
   },
   "bin": {
     "etherpad-lite": "./node/server.js"
