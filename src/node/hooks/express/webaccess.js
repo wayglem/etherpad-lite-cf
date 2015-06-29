@@ -11,7 +11,7 @@ var sessionModule = require('express-session');
 exports.basicAuth = function (req, res, next) {
   var hookResultMangle = function (cb) {
     return function (err, data) {
-      return cb(!err && data.length && data[0]);
+      return cb(!err && data != undefined && data.length && data[0]);
     }
   }
 
