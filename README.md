@@ -35,7 +35,6 @@ See the list:
  - ep_autoscrolldown: Add a checkbox to auto-scroll down the pad when content is modified in Etherpad-Lite. This module is part of an academic project for courses accessibility from Paris 8 University.
  - ep_historicalsearch: Search through the history of documents to find when a query/search pattern or string existed
  - ep_markdownify: Inline markdown formating. Format headings, show images, highlight lists, tables and more
- - [ep_ruler](https://github.com/iquidus/ep_ruler): Adds a ruler to Etherpad lite
  - [ep_table_of_contents](https://github.com/JohnMcLear/ep_table_of_contents.git): View a table of contents for your pad
  - [ep_prompt_for_name](https://github.com/JohnMcLear/ep_prompt_for_name.git): Prompt an author for their name
  - [ep_adminpads](https://github.com/spcsser/ep_adminpads) Plugin for etherpad lite for admins to list, search and delete pads.
