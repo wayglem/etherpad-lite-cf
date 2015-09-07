@@ -238,48 +238,29 @@ exports.getEpVersion = function () {
 };
 
 exports.reloadSettings = function reloadSettings() {
-  // Discover where the settings file lives
-  var settingsFilename = argv.settings || "settings.json";
-
-  if (path.resolve(settingsFilename)===settingsFilename) {
-    settingsFilename = path.resolve(settingsFilename);
-  } else {
-    settingsFilename = path.resolve(path.join(exports.root, settingsFilename));
-  }
-
-  var settingsStr;
-  try{
-    //read the settings sync
-    settingsStr = fs.readFileSync(settingsFilename).toString();
-  } catch(e){
-    console.warn('No settings file found. Continuing using defaults!');
-  }
-
-  // try to parse the settings
-  var settings;
-  try {
-    if(settingsStr) {
-      settingsStr = jsonminify(settingsStr).replace(",]","]").replace(",}","}");
-      settings = JSON.parse(settingsStr);
+    // Discover where the settings file lives
+    var settingsFilename = argv.settings || "settings.json";
+    if (path.resolve(settingsFilename)===settingsFilename) {
+        settingsFilename = path.resolve(settingsFilename);
+    } else {
+        settingsFilename = path.resolve(path.join(exports.root, settingsFilename));
     }
-
     var settingsStr;
-    try {
+    try{
         //read the settings sync
         settingsStr = fs.readFileSync(settingsFilename).toString();
-    } catch (e) {
+    } catch(e){
         console.warn('No settings file found. Continuing using defaults!');
     }
-
     // try to parse the settings
     var settings;
     try {
-        if (settingsStr) {
-            settingsStr = jsonminify(settingsStr).replace(",]", "]").replace(",}", "}");
+        if(settingsStr) {
+            settingsStr = jsonminify(settingsStr).replace(",]","]").replace(",}","}");
             settings = JSON.parse(settingsStr);
         }
-    } catch (e) {
-        console.error('There was an error processing your settings.json file: ' + e.message);
+    }catch(e){
+        console.error('There was an error processing your settings.json file: '+e.message);
         process.exit(1);
     }
 
