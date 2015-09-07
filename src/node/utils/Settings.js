@@ -86,7 +86,7 @@ exports.dbSettings = {"filename": path.join(exports.root, "dirty.db")};
 /**
  * The default Text of a new pad
  */
-exports.defaultPadText = "Welcome to Etherpad!\n\nThis pad text is synchronized as you type, so that everyone viewing this page sees the same text. This allows you to collaborate seamlessly on documents!\n\nEtherpad on Github: http:\/\/j.mp/ep-lite\n";
+exports.defaultPadText = "Welcome to Etherpad!\n\nThis pad text is synchronized as you type, so that everyone viewing this page sees the same text. This allows you to collaborate seamlessly on documents!\n\nEtherpad on Github: https:\/\/github.com\/ether\/etherpad-lite\n";
 
 /**
  * The default Pad Settings for a user (Can be overridden by changing the setting
@@ -154,6 +154,11 @@ exports.minify = true;
  * The path of the abiword executable
  */
 exports.abiword = null;
+
+/**
+ * The path of the tidy executable
+ */
+exports.tidyHtml = null;
 
 /**
  * Should we support none natively supported file types on import?
@@ -233,13 +238,29 @@ exports.getEpVersion = function () {
 };
 
 exports.reloadSettings = function reloadSettings() {
-    // Discover where the settings file lives
-    var settingsFilename = argv.settings || "settings.json";
+  // Discover where the settings file lives
+  var settingsFilename = argv.settings || "settings.json";
 
-    if (path.resolve(settingsFilename) === settingsFilename) {
-        settingsFilename = path.resolve(settingsFilename);
-    } else {
-        settingsFilename = path.resolve(path.join(exports.root, settingsFilename));
+  if (path.resolve(settingsFilename)===settingsFilename) {
+    settingsFilename = path.resolve(settingsFilename);
+  } else {
+    settingsFilename = path.resolve(path.join(exports.root, settingsFilename));
+  }
+
+  var settingsStr;
+  try{
+    //read the settings sync
+    settingsStr = fs.readFileSync(settingsFilename).toString();
+  } catch(e){
+    console.warn('No settings file found. Continuing using defaults!');
+  }
+
+  // try to parse the settings
+  var settings;
+  try {
+    if(settingsStr) {
+      settingsStr = jsonminify(settingsStr).replace(",]","]").replace(",}","}");
+      settings = JSON.parse(settingsStr);
     }
 
     var settingsStr;
