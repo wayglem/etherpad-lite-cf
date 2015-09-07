@@ -56,7 +56,6 @@
     "measured": "1.0.0",
     "mocha": "2.2.4",
     "supertest": "0.15.0",
-    "ep_ldapauth": "0.2.0",
     "ep_tables2": "0.2.11",
     "ep_syntaxhighlighting": "0.1.5",
     "ep_list_pads": "0.0.3",
