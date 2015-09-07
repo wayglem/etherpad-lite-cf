@@ -48,18 +48,7 @@ See the list:
  3. you need to... No that's all, push your app :)
  
 ## Using LDAP from user provided service
-By default this etherpad-lite has the [ep_ldapauth](https://github.com/ArthurHlt/ep_ldapauth) running and you can directly use it with user provided service, do this steps:
-
-
- 1. First you need to create your user provided service, in a terminal run `cf cups myldap -p 'same json from ldap plugin` (**Note**: your service name must have `ldap` in his name for auto-binding)
- 2. Bind your service to your app `cf bind-service <app> myldap`
- 3. Push your app
-
-Cf cups example with json:
-
-```shell
-$ cf cups myldap -p '{"url": "ldaps://ldap.example.com", "accountBase": "ou=Users,dc=example,dc=com", "accountPattern": "(&(objectClass=*)(uid={{username}}))", "displayNameAttribute": "cn", "searchDN": "uid=searchuser,dc=example,dc=com", "searchPWD": "supersecretpassword", "groupSearchBase": "ou=Groups,dc=example,dc=com", "groupAttribute": "member", "groupAttributeIsDN": true ,"searchScope": "sub", "groupSearch": "(&(cn=admin)(objectClass=groupOfNames))", "anonymousReadonly": false}'
-```
+Ldap plugin is erroring with new etherpad-lite, currently moved this into the branch "cloudfoundry-with-ldap" (or see directly here: https://github.com/cloudfoundry-community/etherpad-lite-cf/tree/cloudfoundry-with-ldap#using-ldap-from-user-provided-service)
 
 ## Current limitation
 
