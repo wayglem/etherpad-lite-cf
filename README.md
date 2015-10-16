@@ -31,7 +31,6 @@ See the list:
  - [ep_previewimages](https://github.com/JohnMcLear/ep_previewimages.git): Image previewer, paste the URL or an image or upload an image using ep_fileupload
  - [ep_tasklist](https://github.com/johnmclear/ep_tasklist): Task list in Etherpad
  - [ep_wrap](https://github.com/johnmclear/ep_wrap): Option to disable line wrapping
- - [ep_email_notifications](https://github.com/JohnMcLear/ep_email_notifications.git): Subscribe to a pad and receive an email when someone edits your pad
  - ep_autoscrolldown: Add a checkbox to auto-scroll down the pad when content is modified in Etherpad-Lite. This module is part of an academic project for courses accessibility from Paris 8 University.
  - ep_historicalsearch: Search through the history of documents to find when a query/search pattern or string existed
  - ep_markdownify: Inline markdown formating. Format headings, show images, highlight lists, tables and more
