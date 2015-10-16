@@ -5,8 +5,7 @@ install:
 - bin/installDeps.sh
 - export GIT_HASH=$(git rev-parse --verify --short HEAD)
 - 'echo "web: node node_modules/ep_etherpad-lite/node/server.js" > Procfile'
-- cp src/package.json ./
-- npm install
+- mv node_modules/ep_etherpad-lite/node_modules/ep_* node_modules
 - zip -r etherpad-lite-cf ./*
 deploy:
   provider: releases
