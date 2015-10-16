@@ -8,7 +8,7 @@ install:
 - 'echo "web: bin/run.sh" > Procfile'
 - mv node_modules/ep_etherpad-lite/node_modules/ep_* node_modules
 - rm node_modules/ep_etherpad-lite
-- 'rm src/package.json && mv package-no-plugin.json package.json'
+- 'rm src/package.json && mv src/package-no-plugin.json src/package.json'
 - zip -r etherpad-lite-cf ./*
 deploy:
   provider: releases
