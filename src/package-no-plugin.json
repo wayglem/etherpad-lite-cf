@@ -56,23 +56,6 @@
     "measured": "1.0.0",
     "mocha": "2.2.4",
     "supertest": "0.15.0",
-    "ep_tables2": "0.2.11",
-    "ep_syntaxhighlighting": "0.1.5",
-    "ep_list_pads": "0.0.3",
-    "ep_scrollto": "0.0.5",
-    "ep_colors": "0.0.3",
-    "ep_headings": "0.1.6",
-    "ep_previewimages": "0.0.7",
-    "ep_tasklist": "0.0.8",
-    "ep_wrap": "0.0.3",
-    "ep_autoscrolldown": "0.0.6",
-    "ep_historicalsearch": "0.0.8",
-    "ep_markdownify": "0.0.3",
-    "ep_table_of_contents": "0.1.5",
-    "ep_prompt_for_name": "0.1.0",
-    "ep_adminpads": "0.0.9",
-    "ep_pad_tracker": "0.0.9",
-    "ep_set_title_on_pad": "0.1.4",
     "cfenv": "1.0.0",
     "parse-database-url": "*",
     "semver": "4.3.4"
@@ -84,8 +67,8 @@
     "wd": "0.3.11"
   },
   "engines": {
-    "node": "~0.12.0",
-    "npm": "~2.0"
+    "node": "~0.10.0",
+    "npm": ">=1.0"
   },
   "repository": {
     "type": "git",

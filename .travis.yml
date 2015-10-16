@@ -1,12 +1,14 @@
 sudo: false
 language: node_js
 node_js:
-- '0.10'
+- '0.12'
 install:
 - bin/installDeps.sh
 - export GIT_HASH=$(git rev-parse --verify --short HEAD)
-- 'echo "web: node node_modules/ep_etherpad-lite/node/server.js" > Procfile'
+- 'echo "web: bin/run.sh" > Procfile'
 - mv node_modules/ep_etherpad-lite/node_modules/ep_* node_modules
+- rm node_modules/ep_etherpad-lite
+- 'rm src/package.json && mv package-no-plugin.json package.json'
 - zip -r etherpad-lite-cf ./*
 deploy:
   provider: releases
