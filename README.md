@@ -29,7 +29,6 @@ See the list:
  - ep_colors: add colors to the etherpad
  - [ep_adminpads](https://www.npmjs.org/package/ep_adminpads): Gives the ability to list and administrate all pads on admin page.
  - [ep_previewimages](https://github.com/JohnMcLear/ep_previewimages.git): Image previewer, paste the URL or an image or upload an image using ep_fileupload
- - [ep_tasklist](https://github.com/johnmclear/ep_tasklist): Task list in Etherpad
  - [ep_wrap](https://github.com/johnmclear/ep_wrap): Option to disable line wrapping
  - ep_historicalsearch: Search through the history of documents to find when a query/search pattern or string existed
  - [ep_table_of_contents](https://github.com/JohnMcLear/ep_table_of_contents.git): View a table of contents for your pad
