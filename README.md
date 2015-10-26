@@ -26,6 +26,7 @@ See the list:
  - [ep_list_pads](https://github.com/JohnMcLear/ep_list_pads.git): List Pads on the Index Page
  - [ep_scrollto](https://github.com/johnmclear/ep_scrollto): Scroll to a specific line number based on a parameter of lineNumber in the URL IE [http://test.com/p/foo#lineNumber=10](http://test.com/p/foo#lineNumber=10) -- Users can click on the line number to get a link
  - ep_colors: add colors to the etherpad
+ - [ep_adminpads](https://www.npmjs.org/package/ep_adminpads): Gives the ability to list and administrate all pads on admin page.
  - [ep_previewimages](https://github.com/JohnMcLear/ep_previewimages.git): Image previewer, paste the URL or an image or upload an image using ep_fileupload
  - [ep_tasklist](https://github.com/johnmclear/ep_tasklist): Task list in Etherpad
  - [ep_wrap](https://github.com/johnmclear/ep_wrap): Option to disable line wrapping
