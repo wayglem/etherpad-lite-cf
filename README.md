@@ -21,19 +21,16 @@ To install new etherpad plugin (you can see a list here: [https://github.com/...
 ## Default plugins
 It use a tested set of plugin by default in the package which you can remove by updating the `package.json`.
 See the list:
- - [ep_ldapauth](https://github.com/ArthurHlt/ep_ldapauth) (Not using one from npm, it is not maintained): Hooks into etherpad lite auth to provide LDAP authentication.
  - [ep_tables](https://github.com/gedion/ep_tables): Adds tables to etherpad-lite
  - [ep_syntaxhighlighting](https://github.com/etinquis/etherpad-plugins): Adds syntax highlighting to etherpad-lite
  - [ep_list_pads](https://github.com/JohnMcLear/ep_list_pads.git): List Pads on the Index Page
  - [ep_scrollto](https://github.com/johnmclear/ep_scrollto): Scroll to a specific line number based on a parameter of lineNumber in the URL IE [http://test.com/p/foo#lineNumber=10](http://test.com/p/foo#lineNumber=10) -- Users can click on the line number to get a link
  - ep_colors: add colors to the etherpad
- - [ep_headings](https://github.com/fourplusone/etherpad-plugins): Adds heading support to Etherpad Lite
  - [ep_previewimages](https://github.com/JohnMcLear/ep_previewimages.git): Image previewer, paste the URL or an image or upload an image using ep_fileupload
  - [ep_tasklist](https://github.com/johnmclear/ep_tasklist): Task list in Etherpad
  - [ep_wrap](https://github.com/johnmclear/ep_wrap): Option to disable line wrapping
  - ep_autoscrolldown: Add a checkbox to auto-scroll down the pad when content is modified in Etherpad-Lite. This module is part of an academic project for courses accessibility from Paris 8 University.
  - ep_historicalsearch: Search through the history of documents to find when a query/search pattern or string existed
- - ep_markdownify: Inline markdown formating. Format headings, show images, highlight lists, tables and more
  - [ep_table_of_contents](https://github.com/JohnMcLear/ep_table_of_contents.git): View a table of contents for your pad
  - [ep_prompt_for_name](https://github.com/JohnMcLear/ep_prompt_for_name.git): Prompt an author for their name
  - [ep_adminpads](https://github.com/spcsser/ep_adminpads) Plugin for etherpad lite for admins to list, search and delete pads.
