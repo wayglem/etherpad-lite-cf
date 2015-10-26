@@ -69,6 +69,7 @@
     "ep_prompt_for_name": "0.1.0",
     "ep_pad_tracker": "0.0.9",
     "ep_set_title_on_pad": "0.1.4",
+    "ep_adminpads": "0.0.9",
     "cfenv": "1.0.0",
     "parse-database-url": "*",
     "semver": "4.3.4"
