@@ -19,7 +19,7 @@ To install new etherpad plugin (you can see a list here: [https://github.com/...
 
 
 ## Default plugins
-It use a tested set of plugin by default in the package which you can remove by updating the `package.json`.
+It use a tested set of plugin by default in the package which you can remove by updating the `package.json` in `src` folder.
 See the list:
  - [ep_tables](https://github.com/gedion/ep_tables): Adds tables to etherpad-lite
  - [ep_syntaxhighlighting](https://github.com/etinquis/etherpad-plugins): Adds syntax highlighting to etherpad-lite
