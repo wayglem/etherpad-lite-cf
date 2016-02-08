@@ -35,6 +35,8 @@ See the list:
  - [ep_prompt_for_name](https://github.com/JohnMcLear/ep_prompt_for_name.git): Prompt an author for their name
  - [ep_pad_tracker](https://github.com/aoberegg/ep_pad_tracker) With the Pad Tracker it's possible to search in all the created Pads of your server and with a click on track you can track it. Tracking means that you can see all tracked-pads on the main-page (/admin/padtracker) of the Plugin. All tracked Pads get listed on the main page with the name, the amoung of revisions and the date of the last edit.
  - [ep_set_title_on_pad](https://www.npmjs.org/package/ep_set_title_on_pad) Set the title on a pad in Etherpad, also includes real time updates to the UI.
+ - [ep_public_view](https://www.npmjs.com/package/ep_public_view) This plugin will help make content indexable by evil search engines and the hordes of social networks waiting to suckle on the bussum of your content. This plugin Allows search engines to get pad text contents, use with rob
+ - [ep_pad-lister](https://github.com/ktt-ol/ep_pad-lister) A plugin for Etherpad-lite that shows a list of all pads sorted by last edit date.
 
 ## Using database
 

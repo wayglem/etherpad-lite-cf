@@ -70,6 +70,8 @@
     "ep_pad_tracker": "0.0.9",
     "ep_set_title_on_pad": "0.1.4",
     "ep_adminpads": "0.0.9",
+    "ep_public_view": "0.0.5",
+    "ep_pad-lister": "1.1.2",
     "cfenv": "1.0.0",
     "parse-database-url": "*",
     "semver": "4.3.4"
