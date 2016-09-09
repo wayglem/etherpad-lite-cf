@@ -81,7 +81,7 @@ exports.dbType = "dirty";
 /**
  * This setting is passed with dbType to ueberDB to set up the database
  */
-exports.dbSettings = {"filename": path.join(exports.root, "dirty.db")};
+exports.dbSettings = { "filename" : path.join(exports.root, "dirty.db") };
 
 /**
  * The default Text of a new pad
@@ -92,37 +92,37 @@ exports.defaultPadText = "Welcome to Etherpad!\n\nThis pad text is synchronized 
  * The default Pad Settings for a user (Can be overridden by changing the setting
  */
 exports.padOptions = {
-    "noColors": false,
-    "showControls": true,
-    "showChat": true,
-    "showLineNumbers": true,
-    "useMonospaceFont": false,
-    "userName": false,
-    "userColor": false,
-    "rtl": false,
-    "alwaysShowChat": false,
-    "chatAndUsers": false,
-    "lang": "en-gb"
+  "noColors": false,
+  "showControls": true,
+  "showChat": true,
+  "showLineNumbers": true,
+  "useMonospaceFont": false,
+  "userName": false,
+  "userColor": false,
+  "rtl": false,
+  "alwaysShowChat": false,
+  "chatAndUsers": false,
+  "lang": "en-gb"
 }
 
 /**
  * The toolbar buttons and order.
  */
 exports.toolbar = {
-    left: [
-        ["bold", "italic", "underline", "strikethrough"],
-        ["orderedlist", "unorderedlist", "indent", "outdent"],
-        ["undo", "redo"],
-        ["clearauthorship"]
-    ],
-    right: [
-        ["importexport", "timeslider", "savedrevision"],
-        ["settings", "embed"],
-        ["showusers"]
-    ],
-    timeslider: [
-        ["timeslider_export", "timeslider_settings", "timeslider_returnToPad"]
-    ]
+  left: [
+    ["bold", "italic", "underline", "strikethrough"],
+    ["orderedlist", "unorderedlist", "indent", "outdent"],
+    ["undo", "redo"],
+    ["clearauthorship"]
+  ],
+  right: [
+    ["importexport", "timeslider", "savedrevision"],
+    ["settings", "embed"],
+    ["showusers"]
+  ],
+  timeslider: [
+    ["timeslider_export", "timeslider_settings", "timeslider_returnToPad"]
+  ]
 }
 
 /**
@@ -143,7 +143,7 @@ exports.sessionNoPassword = false;
 /**
  * Max age that responses will have (affects caching layer).
  */
-exports.maxAge = 1000 * 60 * 60 * 6; // 6 hours
+exports.maxAge = 1000*60*60*6; // 6 hours
 
 /**
  * A flag that shows if minification is enabled or not
@@ -154,6 +154,11 @@ exports.minify = true;
  * The path of the abiword executable
  */
 exports.abiword = null;
+
+/**
+ * The path of the libreoffice executable
+ */
+exports.soffice = null;
 
 /**
  * The path of the tidy executable
@@ -180,23 +185,24 @@ exports.disableIPlogging = false;
  */
 exports.loadTest = false;
 
-/*
- * log4js appender configuration
+/**
+ * Enable indentation on new lines
  */
-exports.logconfig = {
-    appenders: [
-        {type: "console"}
-    ]
-};
+exports.indentationOnNewLine = true;
 
 /*
- * Session Key, do not sure this.
- */
+* log4js appender configuration
+*/
+exports.logconfig = { appenders: [{ type: "console" }]};
+
+/*
+* Session Key, do not sure this.
+*/
 exports.sessionKey = false;
 
 /*
- * Trust Proxy, whether or not trust the x-forwarded-for header.
- */
+* Trust Proxy, whether or not trust the x-forwarded-for header.
+*/
 exports.trustProxy = false;
 
 /* This setting is used if you need authentication and/or
@@ -206,89 +212,147 @@ exports.requireAuthentication = false;
 exports.requireAuthorization = false;
 exports.users = {};
 
+/*
+* Show settings in admin page, by default it is true
+*/
+exports.showSettingsInAdminPage = true;
+
 //checks if abiword is avaiable
-exports.abiwordAvailable = function () {
-    if (exports.abiword != null) {
-        return os.type().indexOf("Windows") != -1 ? "withoutPDF" : "yes";
-    }
-    else {
-        return "no";
-    }
+exports.abiwordAvailable = function()
+{
+  if(exports.abiword != null)
+  {
+    return os.type().indexOf("Windows") != -1 ? "withoutPDF" : "yes";
+  }
+  else
+  {
+    return "no";
+  }
+};
+
+exports.sofficeAvailable = function () {
+  if(exports.soffice != null) {
+    return os.type().indexOf("Windows") != -1 ? "withoutPDF": "yes";
+  } else {
+    return "no";
+  }
+};
+
+exports.exportAvailable = function () {
+  var abiword = exports.abiwordAvailable();
+  var soffice = exports.sofficeAvailable();
+
+  if(abiword == "no" && soffice == "no") {
+    return "no";
+  } else if ((abiword == "withoutPDF" && soffice == "no") || (abiword == "no" && soffice == "withoutPDF")) {
+    return "withoutPDF";
+  } else {
+    return "yes";
+  }
 };
 
 // Provide git version if available
-exports.getGitCommit = function () {
-    var version = "";
-    try {
-        var rootPath = path.resolve(npm.dir, '..');
-        var ref = fs.readFileSync(rootPath + "/.git/HEAD", "utf-8");
-        var refPath = rootPath + "/.git/" + ref.substring(5, ref.indexOf("\n"));
-        version = fs.readFileSync(refPath, "utf-8");
-        version = version.substring(0, 7);
+exports.getGitCommit = function() {
+  var version = "";
+  try
+  {
+    var rootPath = path.resolve(npm.dir, '..');
+    if (fs.lstatSync(rootPath + '/.git').isFile()) {
+      rootPath = fs.readFileSync(rootPath + '/.git', "utf8");
+      rootPath = rootPath.split(' ').pop().trim();
+    } else {
+      rootPath += '/.git';
     }
-    catch (e) {
-        console.warn("Can't get git version for server header\n" + e.message)
-    }
-    return version;
-};
+    var ref = fs.readFileSync(rootPath + "/HEAD", "utf-8");
+    var refPath = rootPath + "/" + ref.substring(5, ref.indexOf("\n"));
+    version = fs.readFileSync(refPath, "utf-8");
+    version = version.substring(0, 7);
+  }
+  catch(e)
+  {
+    console.warn("Can't get git version for server header\n" + e.message)
+  }
+  return version;
+}
 
 // Return etherpad version from package.json
-exports.getEpVersion = function () {
-    return require('ep_etherpad-lite/package.json').version;
-};
+exports.getEpVersion = function() {
+  return require('ep_etherpad-lite/package.json').version;
+}
 
 exports.reloadSettings = function reloadSettings() {
-    // Discover where the settings file lives
-    var settingsFilename = argv.settings || "settings.json";
-    if (path.resolve(settingsFilename)===settingsFilename) {
-        settingsFilename = path.resolve(settingsFilename);
-    } else {
-        settingsFilename = path.resolve(path.join(exports.root, settingsFilename));
+  // Discover where the settings file lives
+  var settingsFilename = argv.settings || "settings.json";
+
+  // Discover if a credential file exists
+  var credentialsFilename = argv.credentials || "credentials.json";
+
+  if (path.resolve(settingsFilename)===settingsFilename) {
+    settingsFilename = path.resolve(settingsFilename);
+  } else {
+    settingsFilename = path.resolve(path.join(exports.root, settingsFilename));
+  }
+
+  if (path.resolve(credentialsFilename)===credentialsFilename) {
+    credentialsFilename = path.resolve(credentialsFilename);
+  }
+
+  var settingsStr, credentialsStr;
+  try{
+    //read the settings sync
+    settingsStr = fs.readFileSync(settingsFilename).toString();
+  } catch(e){
+    console.warn('No settings file found. Continuing using defaults!');
+  }
+
+  try{
+    //read the credentials sync
+    credentialsStr = fs.readFileSync(credentialsFilename).toString();
+  } catch(e){
+    // Doesn't matter if no credentials file found..
+  }
+
+  // try to parse the settings
+  var settings;
+  var credentials;
+  try {
+    if(settingsStr) {
+      settingsStr = jsonminify(settingsStr).replace(",]","]").replace(",}","}");
+      settings = JSON.parse(settingsStr);
     }
-    var settingsStr;
-    try{
-        //read the settings sync
-        settingsStr = fs.readFileSync(settingsFilename).toString();
-    } catch(e){
-        console.warn('No settings file found. Continuing using defaults!');
-    }
-    // try to parse the settings
-    var settings;
-    try {
-        if(settingsStr) {
-            settingsStr = jsonminify(settingsStr).replace(",]","]").replace(",}","}");
-            settings = JSON.parse(settingsStr);
-        }
-    }catch(e){
-        console.error('There was an error processing your settings.json file: '+e.message);
-        process.exit(1);
+  }catch(e){
+    console.error('There was an error processing your settings.json file: '+e.message);
+    process.exit(1);
+  }
+
+  if(credentialsStr) {
+    credentialsStr = jsonminify(credentialsStr).replace(",]","]").replace(",}","}");
+    credentials = JSON.parse(credentialsStr);
+  }
+
+  //loop trough the settings
+  for(var i in settings)
+  {
+    //test if the setting start with a low character
+    if(i.charAt(0).search("[a-z]") !== 0)
+    {
+      console.warn("Settings should start with a low character: '" + i + "'");
     }
 
-    //loop trough the settings
-    for (var i in settings) {
-        //test if the setting start with a low character
-        if (i.charAt(0).search("[a-z]") !== 0) {
-            console.warn("Settings should start with a low character: '" + i + "'");
-        }
-
-        //we know this setting, so we overwrite it
-        //or it's a settings hash, specific to a plugin
-        if (exports[i] !== undefined || i.indexOf('ep_') == 0) {
-            exports[i] = settings[i];
-        }
-        //this setting is unkown, output a warning and throw it away
-        else {
-            console.warn("Unknown Setting: '" + i + "'. This setting doesn't exist or it was removed");
-        }
-    }
     //we know this setting, so we overwrite it
     //or it's a settings hash, specific to a plugin
-    if (exports[i] !== undefined || i.indexOf('ep_') == 0) {
-        if (_.isObject(settings[i]) && !_.isArray(settings[i])) {
-            exports[i] = _.defaults(settings[i], exports[i]);
-        } else {
-            exports[i] = settings[i];
-        }
+    if(exports[i] !== undefined || i.indexOf('ep_')==0)
+    {
+      if (_.isObject(settings[i]) && !_.isArray(settings[i])) {
+        exports[i] = _.defaults(settings[i], exports[i]);
+      } else {
+        exports[i] = settings[i];
+      }
+    }
+    //this setting is unkown, output a warning and throw it away
+    else
+    {
+      console.warn("Unknown Setting: '" + i + "'. This setting doesn't exist or it was removed");
     }
     var dbService = /.*(db|database|pg|postgres|mysql|mongo|lite|level|dirty|redis|couch|elasticsearch).*/i;
 
@@ -317,57 +381,88 @@ exports.reloadSettings = function reloadSettings() {
     if (appEnv.getService(ldapService) != null) {
         exports.users.ldapauth = appEnv.getService(ldapService).credentials;
     }
-    log4js.configure(exports.logconfig);//Configure the logging appenders
-    log4js.setGlobalLogLevel(exports.loglevel);//set loglevel
-    log4js.replaceConsole();
+  }
 
-    if (!exports.sessionKey) { // If the secretKey isn't set we also create yet another unique value here
-        exports.sessionKey = randomString(32);
-        console.warn("You need to set a sessionKey value in settings.json, this will allow your users to reconnect to your Etherpad Instance if your instance restarts");
+  //loop trough the settings
+  for(var i in credentials)
+  {
+    //test if the setting start with a low character
+    if(i.charAt(0).search("[a-z]") !== 0)
+    {
+      console.warn("Settings should start with a low character: '" + i + "'");
     }
 
-    if (exports.dbType === "dirty") {
-        console.warn("DirtyDB is used. This is fine for testing but not recommended for production.");
+    //we know this setting, so we overwrite it
+    //or it's a settings hash, specific to a plugin
+    if(exports[i] !== undefined || i.indexOf('ep_')==0)
+    {
+      if (_.isObject(credentials[i]) && !_.isArray(credentials[i])) {
+        exports[i] = _.defaults(credentials[i], exports[i]);
+      } else {
+        exports[i] = credentials[i];
+      }
     }
-    log4js.configure(exports.logconfig);//Configure the logging appenders
-    log4js.setGlobalLogLevel(exports.loglevel);//set loglevel
-    process.env['DEBUG'] = 'socket.io:' + exports.loglevel; // Used by SocketIO for Debug
-    log4js.replaceConsole();
+    //this setting is unkown, output a warning and throw it away
+    else
+    {
+      console.warn("Unknown Setting: '" + i + "'. This setting doesn't exist or it was removed");
+    }
+  }
 
-    if (exports.abiword) {
-        // Check abiword actually exists
-        if (exports.abiword != null) {
-            fs.exists(exports.abiword, function (exists) {
-                if (!exists) {
-                    var abiwordError = "Abiword does not exist at this path, check your settings file";
-                    if (!exports.suppressErrorsInPadText) {
-                        exports.defaultPadText = exports.defaultPadText + "\nError: " + abiwordError + suppressDisableMsg;
-                    }
-                    console.error(abiwordError);
-                    exports.abiword = null;
-                }
-            });
+  log4js.configure(exports.logconfig);//Configure the logging appenders
+  log4js.setGlobalLogLevel(exports.loglevel);//set loglevel
+  process.env['DEBUG'] = 'socket.io:' + exports.loglevel; // Used by SocketIO for Debug
+  log4js.replaceConsole();
+
+  if(exports.abiword){
+    // Check abiword actually exists
+    if(exports.abiword != null)
+    {
+      fs.exists(exports.abiword, function(exists) {
+        if (!exists) {
+          var abiwordError = "Abiword does not exist at this path, check your settings file";
+          if(!exports.suppressErrorsInPadText){
+            exports.defaultPadText = exports.defaultPadText + "\nError: " + abiwordError + suppressDisableMsg;
+          }
+          console.error(abiwordError);
+          exports.abiword = null;
         }
+      });
     }
+  }
 
-    if (!exports.sessionKey) {
-        try {
-            exports.sessionKey = fs.readFileSync("./SESSIONKEY.txt", "utf8");
-        } catch (e) {
-            exports.sessionKey = randomString(32);
-            fs.writeFileSync("./SESSIONKEY.txt", exports.sessionKey, "utf8");
-        }
-    } else {
-        console.warn("Declaring the sessionKey in the settings.json is deprecated. This value is auto-generated now. Please remove the setting from the file.");
-    }
+  if(exports.soffice) {
+    fs.exists(exports.soffice, function (exists) {
+      if(!exists) {
+        var sofficeError = "SOffice does not exist at this path, check your settings file";
 
-    if (exports.dbType === "dirty") {
-        var dirtyWarning = "DirtyDB is used. This is fine for testing but not recommended for production.";
-        if (!exports.suppressErrorsInPadText) {
-            exports.defaultPadText = exports.defaultPadText + "\nWarning: " + dirtyWarning + suppressDisableMsg;
+        if(!exports.suppressErrorsInPadText) {
+          exports.defaultPadText = exports.defaultPadText + "\nError: " + sofficeError + suppressDisableMsg;
         }
-        console.warn(dirtyWarning);
+        console.error(sofficeError);
+        exports.soffice = null;
+      }
+    });
+  }
+
+  if (!exports.sessionKey) {
+    try {
+      exports.sessionKey = fs.readFileSync("./SESSIONKEY.txt","utf8");
+    } catch(e) {
+      exports.sessionKey = randomString(32);
+      fs.writeFileSync("./SESSIONKEY.txt",exports.sessionKey,"utf8");
     }
+  } else {
+    console.warn("Declaring the sessionKey in the settings.json is deprecated. This value is auto-generated now. Please remove the setting from the file.");
+  }
+
+  if(exports.dbType === "dirty"){
+    var dirtyWarning = "DirtyDB is used. This is fine for testing but not recommended for production.";
+    if(!exports.suppressErrorsInPadText){
+      exports.defaultPadText = exports.defaultPadText + "\nWarning: " + dirtyWarning + suppressDisableMsg;
+    }
+    console.warn(dirtyWarning);
+  }
 };
 
 // initially load settings

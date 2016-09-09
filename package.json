@@ -29,12 +29,12 @@
     "etherpad-lite": "./node/server.js"
   },
   "engines": {
-    "node": "~0.12.0",
-    "npm": "~2.0"
+    "node": "~5.11.0",
+    "npm": "~3.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/cloudfoundry-community/etherpad-lite-cf.git"
   },
-  "version": "1.5.7-cf"
+  "version": "1.6.0-cf"
 }
