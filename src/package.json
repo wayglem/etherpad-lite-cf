@@ -50,7 +50,7 @@
                       "ep_scrollto": "0.0.6",
                       "ep_colors": "0.0.3",
                       "ep_previewimages": "0.0.9",
-                      "ep_headings": "0.1.6",
+                      "ep_headings2": "0.0.9",
                       "ep_wrap": "0.0.4",
                       "ep_historicalsearch": "0.0.8",
                       "ep_table_of_contents": "0.1.15",
@@ -68,8 +68,7 @@
   "devDependencies": {
                       "wd"      : "0.3.11"
                      },
-  "engines"        : {  "node": "~5.11.0",
-                        "npm": "~3.0"
+  "engines"        : {  "node": "~5.11.0"
                      },
   "repository"     : { "type" : "git",
                        "url" : "http://github.com/ether/etherpad-lite.git"
