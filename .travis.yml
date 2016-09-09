@@ -10,6 +10,7 @@ install:
 - cp -R node_modules/ep_etherpad-lite/node_modules/log4js node_modules/
 - rm node_modules/ep_etherpad-lite
 - 'rm src/package.json && mv src/package-no-plugin.json src/package.json'
+- npm install
 - zip -r etherpad-lite-cf ./*
 deploy:
   provider: releases
