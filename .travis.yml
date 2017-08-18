@@ -3,7 +3,7 @@ language: node_js
 node_js:
 - '7'
 install:
-- bin/installDeps.sh
+- sh -x bin/installDeps.sh
 - export GIT_HASH=$(git rev-parse --verify --short HEAD)
 - 'echo "web: bin/run.sh" > Procfile'
 - mv node_modules/ep_etherpad-lite/node_modules/ep_* node_modules
