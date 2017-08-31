@@ -43,7 +43,7 @@
                       "jsonminify"              : "0.4.1",
                       "measured"                : "1.1.0",
                       "mocha"                   : "2.4.5",
-                      "supertest"               : "1.2.0"
+                      "supertest"               : "1.2.0",
                       "ep_tables2": "0.2.13",
                       "ep_syntaxhighlighting": "0.1.5",
                       "ep_list_pads": "0.0.4",
