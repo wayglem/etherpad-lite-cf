@@ -1,7 +1,7 @@
 sudo: false
 language: node_js
 node_js:
-- '5.11'
+- '6.9'
 install:
 - bin/installDeps.sh
 - export GIT_HASH=$(git rev-parse --verify --short HEAD)
