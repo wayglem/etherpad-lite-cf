@@ -29,7 +29,7 @@
     "etherpad-lite": "./node/server.js"
   },
   "engines": {
-    "node": "7.x"
+    "node": "6.9.x"
   },
   "repository": {
     "type": "git",
