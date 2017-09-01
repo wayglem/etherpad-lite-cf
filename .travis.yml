@@ -12,6 +12,7 @@ install:
 - 'rm src/package.json && mv src/package-no-plugin.json src/package.json'
 - npm install || npm install
 - sed -i 's/npm install --loglevel warn//g' bin/installDeps.sh 
+- sed -i -e 's/ENGINE=MyISAM/ENGINE=INNODB/' src/node_modules/ueberdb2/mysql_db.js
 - zip -r etherpad-lite-cf ./*
 deploy:
   provider: releases
