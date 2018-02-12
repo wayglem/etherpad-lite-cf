@@ -20,3 +20,4 @@ npm-debug.log
 bin/etherpad-1.deb
 *.iml
 credentials.json
+out/
