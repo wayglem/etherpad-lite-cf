@@ -10,7 +10,6 @@ install:
 - rm src/package.json && mv src/package-no-plugin.json src/package.json
 - npm install --no-bin-link
 - sed -i 's/npm install --loglevel warn//g' bin/installDeps.sh
-- rm src/package-lock.json
 - zip -r etherpad-lite-cf ./*
 deploy:
   provider: releases
