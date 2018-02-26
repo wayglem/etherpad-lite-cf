@@ -8,7 +8,6 @@ install:
 - 'echo "web: bin/run.sh" > Procfile'
 - cp -R node_modules/ep_etherpad-lite/node_modules/log4js node_modules/
 - rm src/package.json Makefile && mv src/package-no-plugin.json src/package.json
-- npm install --no-bin-link
 - sed -i 's/npm install --loglevel warn//g' bin/installDeps.sh
 - rm package.json
 - zip -r etherpad-lite-cf ./*
