@@ -1,0 +1,25 @@
+{
+  "description"    : "A Etherpad based on node.js",
+  "homepage"       : "http://etherpad.org",
+  "keywords"       : ["etherpad", "realtime", "collaborative", "editor"],
+  "author"         : "Etherpad Foundation",
+  "contributors"   : [
+    { "name": "John McLear" },
+    { "name": "Hans Pinckaers" },
+    { "name": "Robin Buse" },
+    { "name": "Marcel Klehr" },
+    { "name": "Peter Martischka" }
+  ],
+  "dependencies"   : {
+  },
+  "bin":             { "etherpad-lite": "./node/server.js" },
+  "devDependencies": {
+  },
+  "engines"        : { "node" : "8.x"
+  },
+  "repository"     : { "type" : "git",
+    "url": "https://github.com/cloudfoundry-community/etherpad-lite-cf.git"
+  },
+  "version"        : "1.6.3-cf-node8",
+  "license"        : "Apache-2.0"
+}
