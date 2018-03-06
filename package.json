@@ -1,25 +1,58 @@
 {
-  "description"    : "A Etherpad based on node.js",
-  "homepage"       : "http://etherpad.org",
-  "keywords"       : ["etherpad", "realtime", "collaborative", "editor"],
-  "author"         : "Etherpad Foundation",
-  "contributors"   : [
-    { "name": "John McLear" },
-    { "name": "Hans Pinckaers" },
-    { "name": "Robin Buse" },
-    { "name": "Marcel Klehr" },
-    { "name": "Peter Martischka" }
+  "description": "A Etherpad based on node.js",
+  "homepage": "http://etherpad.org",
+  "keywords": [
+    "etherpad",
+    "realtime",
+    "collaborative",
+    "editor"
   ],
-  "dependencies"   : {
+  "author": "Etherpad Foundation",
+  "contributors": [
+    {
+      "name": "John McLear"
+    },
+    {
+      "name": "Hans Pinckaers"
+    },
+    {
+      "name": "Robin Buse"
+    },
+    {
+      "name": "Marcel Klehr"
+    },
+    {
+      "name": "Peter Martischka"
+    }
+  ],
+  "dependencies": {},
+  "bin": {
+    "etherpad-lite": "./node/server.js"
   },
-  "bin":             { "etherpad-lite": "./node/server.js" },
   "devDependencies": {
+    "ep_adminpads": "0.0.12",
+    "ep_colors": "0.0.3",
+    "ep_headings2": "0.0.9",
+    "ep_historicalsearch": "0.0.8",
+    "ep_list_pads": "0.0.4",
+    "ep_pad-lister": "1.1.3",
+    "ep_pad_tracker": "0.0.9",
+    "ep_previewimages": "0.0.9",
+    "ep_prompt_for_name": "0.1.0",
+    "ep_public_view": "0.0.5",
+    "ep_scrollto": "0.0.6",
+    "ep_set_title_on_pad": "0.1.4",
+    "ep_table_of_contents": "0.1.15",
+    "ep_tables2": "0.2.13",
+    "ep_wrap": "0.0.4"
   },
-  "engines"        : { "node" : "8.x"
+  "engines": {
+    "node": "8.x"
   },
-  "repository"     : { "type" : "git",
+  "repository": {
+    "type": "git",
     "url": "https://github.com/cloudfoundry-community/etherpad-lite-cf.git"
   },
-  "version"        : "1.6.3-cf-node8",
-  "license"        : "Apache-2.0"
+  "version": "1.6.3-cf-node8",
+  "license": "Apache-2.0"
 }

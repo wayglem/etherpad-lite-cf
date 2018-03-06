@@ -1,8 +1,9 @@
 sudo: false
 language: node_js
 node_js:
-- '6'
+- '8'
 install:
+- npm install --loglevel warn
 - bin/installDeps.sh
 - export GIT_HASH=$(git rev-parse --verify --short HEAD)
 - 'echo "web: bin/run.sh" > Procfile'
