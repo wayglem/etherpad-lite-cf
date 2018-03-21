@@ -1,23 +1,25 @@
 sudo: false
 language: node_js
 node_js:
-- '7'
+- '8'
 install:
+- npm install --loglevel warn
 - bin/installDeps.sh
 - export GIT_HASH=$(git rev-parse --verify --short HEAD)
 - 'echo "web: bin/run.sh" > Procfile'
-- mv node_modules/ep_etherpad-lite/node_modules/ep_* node_modules
 - cp -R node_modules/ep_etherpad-lite/node_modules/log4js node_modules/
 - rm node_modules/ep_etherpad-lite
-- 'rm src/package.json && mv src/package-no-plugin.json src/package.json'
-- npm install || npm install
-- sed -i 's/npm install --loglevel warn//g' bin/installDeps.sh 
-- zip -r etherpad-lite-cf ./*
+- sed -i 's/npm install --loglevel warn//g' bin/installDeps.sh
+- zip -q -r etherpad-lite-cf ./*
+script:
+- "tests/frontend/travis/runner.sh"
 deploy:
   provider: releases
   api_key:
-    secure: GDExihYPG0uY9ZmrA1uGYXwQiQ39Y5qbrP472b7DJ6lWrGPI1+CN1l+aFDs9dn6yQbmHt+0z/epBOCCMIAQ/LUofULzSPhAWaoi0sEOzX/xF2jAYULdOJq9cpEjfQkEI+D1xsfkxY8HMe05Wxaj/S0Wd9X+zAQbMiPfFktkUv00=
+    secure: AHt1Hle/ip0pRBbDkSNEjIL9iF1xLykdrHKIEkqIoYQtnEo0W7R9YVhIkEfe/pNS3pT5o33oDTEp/1zQNXLGAleMcElHITIXD5pEKxuSHZhJT54R0gM8iHG94dEo3DGrnHMSr8WSLns2ZwNxYGEAnArIkNSNYI1Pt2PySksff/QMEb6rtUIL0Ufrb8UNXXjChnszjT5IhJC79kebz6O79ZKdIU3GYRmessvp+2XQRL/6ExM8Z9lPZPcrP+AvJAeTN9zFON74oqZX9GxSVwhjINtuW1tPDjjsG5MOmp4mYhC6ibDGZ+nXL6sD2PA5zUvaXq0SbBsJeg2OnjEEYG0pYdzRARkFC8YP0tdclzYcDsR4K2KxSHTG0/2D+XDecOG6rAyVzfhzyETS6drjsOJMILEYyu5P+Q425E8bg/+Mrn6/6iNDwNLurN36+GlkYNcIIgROC2O3/3aKPxsIkM1cy44dLgZYbjN93CXAezdA1zxT74tVAw0BGhkHuV24PrwyJ14zU1t3fpym/mTmYexxm16Vs5EJhc9lJ0+88ucc+nye3kBAuj9yOoLvgN8RXXQZC5UxP+Sa0GEOtPbyikUUKMx8x4BTE3QV9fQBMW8ZxQm+ZrjFY7DoklbW4OUCNiYL+DdsPVdy/mUxDkZYmwn1lkTounPYGraKJmo6LXinE6Y=
   file: etherpad-lite-cf.zip
+  skip_cleanup: true
   on:
-    tags: true
+    repo: wayglem/etherpad-lite-cf
+    branch: cloudfoundry
     all_branches: true
