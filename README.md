@@ -23,7 +23,6 @@ It use a tested set of plugin by default in the package which you can remove by 
 See the list:
  - [ep_tables](https://github.com/gedion/ep_tables): Adds tables to etherpad-lite
  - [ep_headings](https://www.npmjs.org/package/ep_headings): Adds heading support to Etherpad Lite.
- - [ep_syntaxhighlighting](https://github.com/etinquis/etherpad-plugins): Adds syntax highlighting to etherpad-lite
  - [ep_list_pads](https://github.com/JohnMcLear/ep_list_pads.git): List Pads on the Index Page
  - [ep_scrollto](https://github.com/johnmclear/ep_scrollto): Scroll to a specific line number based on a parameter of lineNumber in the URL IE [http://test.com/p/foo#lineNumber=10](http://test.com/p/foo#lineNumber=10) -- Users can click on the line number to get a link
  - ep_colors: add colors to the etherpad
