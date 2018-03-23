@@ -82,57 +82,53 @@ var dbService = /.*(db|database|pg|postgres|mysql|mongo|lite|level|dirty|redis|c
 
 This will now Cloud Foundry ready.
 
-## 3. merge manually `package.json` 
-
-Choose the file from upstream but replace the last part of json file by that:
+## 3. add root `package.json` with tested etherpad plugins dependencies 
 
 ```json
 "engines": {
-    "node": "~5.11.0" // npm line need to be removed but you can change the nodejs version here
+    "node": "8.x" // npm line need to be removed but you can change the nodejs version here
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/cloudfoundry-community/etherpad-lite-cf.git"
   },
-"version": "<current-release>-cf" // e.g.: 1.6.0-cf
-```
-
-## 4. merge manually `src/package.json`
-
-Choose the file from upstream and do the exact thing that you did just before with file `package.json`.
-
-Copy this file `cp src/package.json src/package-no-plugin.json` (yes this will overwrite the current `src/package-no-plugin.json` file but this is needed)
-
-Now you will need to add required dependencies in the `src/package.json` in order to add plugins and requirement for Cloud Foundry. 
-So, add in `dependencies` (don't forget the comma just before adding these dependencies):
-
-```json
-"ep_tables2": "0.2.13",
-"ep_syntaxhighlighting": "0.1.5",
-"ep_list_pads": "0.0.4",
-"ep_scrollto": "0.0.6",
-"ep_colors": "0.0.3",
-"ep_previewimages": "0.0.9",
-"ep_headings2": "0.0.9",
-"ep_wrap": "0.0.4",
-"ep_historicalsearch": "0.0.8",
-"ep_table_of_contents": "0.1.15",
-"ep_prompt_for_name": "0.1.0",
-"ep_pad_tracker": "0.0.9",
-"ep_set_title_on_pad": "0.1.4",
-"ep_adminpads": "0.0.11",
-"ep_public_view": "0.0.5",
-"ep_pad-lister": "1.1.2",
-"cfenv": "1.0.0",
-"parse-database-url": "*",
-"semver": "4.3.4"
+  "dependencies": { // add the compatible plugins 
+    "ep_adminpads": "0.0.12",
+    "ep_colors": "0.0.3",
+    "ep_headings2": "0.0.9",
+    "ep_historicalsearch": "0.0.8",
+    "ep_list_pads": "0.0.4",
+    "ep_pad-lister": "1.1.3",
+    "ep_pad_tracker": "0.0.9",
+    "ep_previewimages": "0.0.9",
+    "ep_prompt_for_name": "0.1.0",
+    "ep_public_view": "0.0.5",
+    "ep_scrollto": "0.0.6",
+    "ep_set_title_on_pad": "0.1.4",
+    "ep_table_of_contents": "0.1.15",
+    "ep_tables2": "0.2.13",
+    "ep_wrap": "0.0.4"
+  },
+  "version": "<current-release>-cf" // e.g.: 1.6.3-cf
 ```
 
 **Note**: At this moment you can check if there is new version of plugin, all etherpad plugins start with `ep_`
 
+## 4. merge manually `src/package.json`
+
+Choose the file from upstream and update engine, repository and version like you did in step 3.
+
+Now you will need to add required dependencies in the `src/package.json`. 
+So, add in `dependencies` (don't forget the comma just before adding these dependencies):
+
+```json
+"cfenv": "1.0.0",
+"parse-database-url": "*"
+```
+
 ## 5. Create a release
 
-Push all your modificatio to this repo and create a release. 
-The tag name of this release should be `<current-release>-cf` (e.g.: `1.6.0-cf`)
+Push all your modification to this repo and create a release. 
+The tag name of this release should be `<current-release>-cf` (e.g.: `1.6.3-cf`)
 
 Travis will do the rest, after travis complete its task it will upload a `etherpad-lite-cf.zip` file which will be useable.
