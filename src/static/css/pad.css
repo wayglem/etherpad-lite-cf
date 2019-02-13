@@ -3,8 +3,9 @@ html,
 body,
 p {
   margin: 0;
-  padding: 0;
+  padding: 0px;
 }
+
 .clear {
   clear: both
 }
@@ -790,6 +791,10 @@ table#otheruserstable {
   border: 0
 }
 
+.buttonicon:before  {
+  font-family: "fontawesome-etherpad";
+}
+
 .buttonicon:focus{
   border: 1px solid #666;
 }
@@ -1071,9 +1076,9 @@ input[type=checkbox] {
       overflow: auto;
     }
     #mycolorpicker {
-      left: -73px;
-      top:auto !important;
-      bottom:33px !important;
+      left: 0px;
+      top:37px !important;
+      position:fixed;
       /* #mycolorpicker: width -#users: width */;
     }
     #editorcontainer {
@@ -1319,19 +1324,7 @@ input[type=checkbox] {
 
 }
 
-[data-icon]:before {
-  font-family: "fontawesome-etherpad" !important;
-  content: attr(data-icon);
-  font-style: normal !important;
-  font-weight: normal !important;
-  font-variant: normal !important;
-  text-transform: none !important;
-  speak: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
+[data-icon]:before,
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
   font-family: "fontawesome-etherpad" !important;

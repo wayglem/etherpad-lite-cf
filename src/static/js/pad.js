@@ -206,15 +206,22 @@ function handshake()
 
   socket.on('reconnect', function () {
     pad.collabClient.setChannelState("CONNECTED");
-    pad.sendClientReady(true);
+    pad.sendClientReady(receivedClientVars);
   });
 
   socket.on('reconnecting', function() {
+    pad.collabClient.setStateIdle();
+    pad.collabClient.setIsPendingRevision(true);
     pad.collabClient.setChannelState("RECONNECTING");
   });
 
   socket.on('reconnect_failed', function(error) {
     pad.collabClient.setChannelState("DISCONNECTED", "reconnect_timeout");
+  });
+
+  socket.on('error', function(error) {
+    pad.collabClient.setStateIdle();
+    pad.collabClient.setIsPendingRevision(true);
   });
 
   var initalized = false;
@@ -307,7 +314,7 @@ function handshake()
       // If the Monospacefont value is set to true then change it to monospace.
       if (settings.useMonospaceFontGlobal == true)
       {
-        pad.changeViewOption('useMonospaceFont', true);
+        pad.changeViewOption('padFontFamily', 'monospace');
       }
       // if the globalUserName value is set we need to tell the server and the client about the new authorname
       if (settings.globalUserName !== false)
@@ -553,19 +560,7 @@ var pad = {
       if(padcookie.getPref("rtlIsTrue") == true){
         pad.changeViewOption('rtlIsTrue', true);
       }
-
-
-      var fonts = ['useMonospaceFont', 'useMontserratFont', 'useOpenDyslexicFont', 'useComicSansFont', 'useCourierNewFont',
-        'useGeorgiaFont', 'useImpactFont', 'useLucidaFont', 'useLucidaSansFont', 'usePalatinoFont', 'useRobotoMonoFont',
-        'useTahomaFont', 'useTimesNewRomanFont', 'useTrebuchetFont', 'useVerdanaFont', 'useSymbolFont', 'useWebdingsFont',
-        'useWingDingsFont', 'useSansSerifFont', 'useSerifFont'];
-
-
-      $.each(fonts, function(i, font){
-        if(padcookie.getPref(font) == true){
-          pad.changeViewOption(font, true);
-        }
-      })
+      pad.changeViewOption('padFontFamily', padcookie.getPref("padFontFamily"));
 
       hooks.aCallAll("postAceInit", {ace: padeditor.ace, pad: pad});
     }
@@ -831,7 +826,7 @@ var pad = {
       $.ajax(
       {
         type: 'post',
-        url: '/ep/pad/connection-diagnostic-info',
+        url: 'ep/pad/connection-diagnostic-info',
         data: {
           diagnosticInfo: JSON.stringify(pad.diagnosticInfo)
         },

@@ -9,8 +9,8 @@ In order to update this fork you will need to follow these instructions
 First you will need to merge from a released version of etherpad:
 
 1. `git remote add upstream https://github.com/ether/etherpad-lite.git`
-2. `git fetch upstream`
-3. `git merge upstream/release/<current-release>` (e.g.: `git merge upstream/release/1.6.0` )
+2. `git fetch --tags upstream`
+3. `git merge <current-release-tag-name>` (e.g.: `git merge 1.7.5` )
 
 Here you will have a bunch of files which need to be merged manually.
 

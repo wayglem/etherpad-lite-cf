@@ -72,7 +72,7 @@ The API is accessible via HTTP. HTTP Requests are in the format /api/$APIVERSION
 ### Response Format
 Responses are valid JSON in the following format:
 
-```js
+```json
 {
   "code": number,
   "message": string,
@@ -379,7 +379,7 @@ Restores revision from past as new changeset
 returns
 
 * a part of the chat history, when `start` and `end` are given
-* the whole chat histroy, when no extra parameters are given
+* the whole chat history, when no extra parameters are given
 
 
 *Example returns:*
